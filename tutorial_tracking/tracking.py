@@ -89,6 +89,19 @@ for i in range(nb_pts):
 	print modelepoints[i]
 f.close()
 
+print "I read file %s" %sys.argv[2] 
+f = open(sys.argv[2], 'r')
+eye_offsets={}
+tmplist = f.readline().split(' ')
+eye_offsets['right'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+tmplist = f.readline().split(' ')
+eye_offsets['left'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+print "Eye offsets read:"
+print eye_offsets
+f.close()
+
+
+
 blob_centers = []
 
 
@@ -273,7 +286,7 @@ def MultMatrix(matleft,matright):
 ############################################################### Referential transform ####################################################
 
 #tracker to world/room referential
-def WordToTrackerTransform(trackingmatrix) :
+def WorldToTrackerTransform(trackingmatrix) :
         ##############################Step 5 ##########################################        
         rotated_trackingmatrix = MultMatrix(trackingmatrix, ZAxisRotationMatrix(180))
     	result = MultMatrix(rotated_trackingmatrix, TranslationMatrix(0,0,-100))
@@ -468,13 +481,13 @@ def runtracking():
 			trackingmatrix=find_pose(nb_pts,blob_centers,modelepoints)
  			  			
 			#put it in the world coordinate system
-			trakerinroom=WordToTrackerTransform(trackingmatrix)
+			trakerinroom=WorldToTrackerTransform(trackingmatrix)
 			# express the coordinates of the eyes in the world coordinate system
-   			# cyclopeinroom=BodyToCyclopsEyeTransform()
-			# rightinroom=BodyToRightEyeTransform()
-			# leftinroom=BodyToLeftEyeTransform()			
+            cyclopeinroom=BodyToCyclopsEyeTransform()
+			rightinroom=BodyToRightEyeTransform()
+			leftinroom=BodyToLeftEyeTransform()			
 			
-			# extract translations and send
+            ## extract translations and send
 
    			# poscyclope=[cyclopeinroom[3][0], cyclopeinroom[3][1], cyclopeinroom[3][2]]
 			# print "poscylope",poscyclope
@@ -489,7 +502,7 @@ def runtracking():
 			# liblo.send(target, "/tracker/head/pos_xyz/cyclope_eye",  poscyclope[0],poscyclope[1],poscyclope[2])
 			# liblo.send(target, "/tracker/head/pos_xyz/left_eye",  posleft[0],posleft[1],posleft[2])
 			# liblo.send(target, "/tracker/head/pos_xyz/right_eye",  posright[0],posright[1],posright[2])						
-		# else :
-			# print "Traking failed" 	
+		else :
+			print "Traking failed" 	
 			
-runtracking()
+runtracking() 
