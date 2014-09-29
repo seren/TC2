@@ -89,6 +89,19 @@ for i in range(nb_pts):
 	print modelepoints[i]
 f.close()
 
+print "I read file %s" %sys.argv[2] 
+f = open(sys.argv[2], 'r')
+eye_offsets={}
+tmplist = f.readline().split(' ')
+eye_offsets['right'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+tmplist = f.readline().split(' ')
+eye_offsets['left'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+print "Eye offsets read:"
+print eye_offsets
+f.close()
+
+
+
 blob_centers = []
 
 
