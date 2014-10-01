@@ -483,9 +483,9 @@ def runtracking():
 			#put it in the world coordinate system
 			trakerinroom=WorldToTrackerTransform(trackingmatrix)
 			# express the coordinates of the eyes in the world coordinate system
-            cyclopeinroom=BodyToCyclopsEyeTransform()
-			rightinroom=BodyToRightEyeTransform()
-			leftinroom=BodyToLeftEyeTransform()			
+            # cyclopeinroom=BodyToCyclopsEyeTransform()
+			# rightinroom=BodyToRightEyeTransform()
+			# leftinroom=BodyToLeftEyeTransform()			
 			
             ## extract translations and send
 
