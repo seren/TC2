@@ -89,16 +89,16 @@ for i in range(nb_pts):
 	print modelepoints[i]
 f.close()
 
-print "I read file %s" %sys.argv[2] 
-f = open(sys.argv[2], 'r')
-eye_offsets={}
-tmplist = f.readline().split(' ')
-eye_offsets['right'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
-tmplist = f.readline().split(' ')
-eye_offsets['left'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
-print "Eye offsets read:"
-print eye_offsets
-f.close()
+# print "I read file %s" %sys.argv[2] 
+# f = open(sys.argv[2], 'r')
+# eye_offsets={}
+# tmplist = f.readline().split(' ')
+# eye_offsets['right'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+# tmplist = f.readline().split(' ')
+# eye_offsets['left'] = (float(tmplist[0]),float(tmplist[1]),float(tmplist[2]))
+# print "Eye offsets read:"
+# print eye_offsets
+# f.close()
 
 
 
@@ -296,18 +296,21 @@ def WorldToTrackerTransform(trackingmatrix) :
 
         ##############################Step 7 ##########################################
 #cyclop eye referential in body/glass referential 
-def BodyToCyclopsEyeTransform() : 
+def BodyToCyclopsEyeTransform(trakerinroom) : 
         #...
+        result = MultMatrix(trakerinroom, TranslationMatrix(7.4,0.15,0))
         return result
 
 #left eye referential in body/glass referential 
-def BodyToLeftEyeTransform() : 
+def BodyToLeftEyeTransform(cyclopeinroom) : 
 	#...
+	result = MultMatrix(cyclopeinroom, TranslationMatrix(9.6,2.8,0))
 	return result
 
 #right eye referential in body/glass referential 
-def BodyToRightEyeTransform() : 
+def BodyToRightEyeTransform(cyclopeinroom) : 
 	#...
+	result = MultMatrix(cyclopeinroom, TranslationMatrix(1,2.8,0))
 	return result
 
         ###############################################################################
