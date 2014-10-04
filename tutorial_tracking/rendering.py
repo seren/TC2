@@ -20,17 +20,17 @@ righteyepos = [+2.5, 0.0, 0.0]
 
 ##############################Step 2 ##########################################
 #actual size of screen: unit is cm, adapt it to your case 
-scr_height = ?
-scr_width = ?
+scr_height = 29.2
+scr_width = 52.2
 
 #widows size : unit is pixel be carreful whether fullscreen or windows mode 
-window_width = ?
-window_height = ?
+window_width = 1920
+window_height = 1080
 
 #define screen points in the world/room referential, adapt to your case
-screenleftdownpos = [x?1,y?1,z?1]
-screenrightdownpos = [x?2,y?2,z?2]
-screenleftuppos = [x?3,y?3,z?3]
+screenleftdownpos = [-scr_width/2,-scr_height/2,-60]
+screenrightdownpos = [scr_width/2,-scr_height/2,-60]
+screenleftuppos = [-scr_width/2,scr_height/2,-60]
 ###############################################################################
 
 
