@@ -486,25 +486,25 @@ def runtracking():
 			#put it in the world coordinate system
 			trakerinroom=WorldToTrackerTransform(trackingmatrix)
 			# express the coordinates of the eyes in the world coordinate system
-            # cyclopeinroom=BodyToCyclopsEyeTransform()
-			# rightinroom=BodyToRightEyeTransform()
-			# leftinroom=BodyToLeftEyeTransform()			
+			cyclopeinroom=BodyToCyclopsEyeTransform(trakerinroom)
+			rightinroom=BodyToRightEyeTransform(cyclopeinroom)
+			leftinroom=BodyToLeftEyeTransform(cyclopeinroom)		
 			
             ## extract translations and send
 
-   			# poscyclope=[cyclopeinroom[3][0], cyclopeinroom[3][1], cyclopeinroom[3][2]]
-			# print "poscylope",poscyclope
+			poscyclope=[cyclopeinroom[3][0], cyclopeinroom[3][1], cyclopeinroom[3][2]]
+			print "poscylope",poscyclope
 
-			# posleft=[leftinroom[3][0], leftinroom[3][1], leftinroom[3][2]]
+			posleft=[leftinroom[3][0], leftinroom[3][1], leftinroom[3][2]]
 			# print "posleft",posleft
 			
-			# posright=[rightinroom[3][0], rightinroom[3][1], rightinroom[3][2]]
+			posright=[rightinroom[3][0], rightinroom[3][1], rightinroom[3][2]]
 			# print "posright",posright
 
 			
-			# liblo.send(target, "/tracker/head/pos_xyz/cyclope_eye",  poscyclope[0],poscyclope[1],poscyclope[2])
-			# liblo.send(target, "/tracker/head/pos_xyz/left_eye",  posleft[0],posleft[1],posleft[2])
-			# liblo.send(target, "/tracker/head/pos_xyz/right_eye",  posright[0],posright[1],posright[2])						
+			liblo.send(target, "/tracker/head/pos_xyz/cyclope_eye",  poscyclope[0],poscyclope[1],poscyclope[2])
+			liblo.send(target, "/tracker/head/pos_xyz/left_eye",  posleft[0],posleft[1],posleft[2])
+			liblo.send(target, "/tracker/head/pos_xyz/right_eye",  posright[0],posright[1],posright[2])						
 		else :
 			print "Traking failed" 	
 			
