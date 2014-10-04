@@ -288,8 +288,8 @@ def MultMatrix(matleft,matright):
 #tracker to world/room referential
 def WorldToTrackerTransform(trackingmatrix) :
         ##############################Step 5 ##########################################        
-        rotated_trackingmatrix = MultMatrix(trackingmatrix, ZAxisRotationMatrix(180))
-    	result = MultMatrix(rotated_trackingmatrix, TranslationMatrix(0,0,-100))
+        rotated_trackingmatrix = MultMatrix(ZAxisRotationMatrix(3.141516),trackingmatrix)
+    	result = MultMatrix(TranslationMatrix(0,0,-75),rotated_trackingmatrix)
         return result
         ###############################################################################
 
