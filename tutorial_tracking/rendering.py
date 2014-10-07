@@ -4,7 +4,8 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import sys
 import string
-from Image import *
+#from Image import *
+from PIL import Image
 from liblo import *
 import numpy
 ESCAPE = '\033'
@@ -95,7 +96,8 @@ xrot = yrot = zrot = 0.0
 
 def LoadTextures():
 	#global texture
-	image = open("NeHe.bmp")
+#	image = open("NeHe.bmp")
+	image = Image.open("NeHe.bmp")
 	
 	ix = image.size[0]
 	iy = image.size[1]
@@ -326,7 +328,8 @@ def main():
 	#  RGBA color
 	# Alpha components supported 
 	# Depth buffer
-        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_STEREO)
+#        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_STEREO)
+        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
 	# Normally the window has the size of the screen...
 	# for convenience we select a smaller size
 	# caution: aspect ratio MUST be the same has the real one (scr_width / scr_height)
